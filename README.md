@@ -45,12 +45,14 @@ Each region supports data for multiple scenarios.  Do the following to add scena
   - PointofInterest.csv: POINTS OF INTEREST, FILTER, LAT, LNG, GROUPING, <QUANTY_1_LABEL>, <QUANTY_2_LABEL>, ...
   - TimeUseData.csv: GROUP, TIME PERIOD, PURPOSE, QUANTITY
 
-Notes: 
+Notes:   
   - All data tables are not required and each data table is used to populate a specific visual.  Take 
 a look at the example data tables to see how each visual is constructed based on the data.  Most of the 
 visuals are populated based by what is in the data tables, thereby making the visuals highly customizable.  
-  - The PERIOD entries for TimeUse and 3DAnimatedMap are 1 to 48 and represent 30 minute periods from 3am to 3am the next day.  
-  - The TimeUse purposes must be ALLCAPS and must include at least HOME, WORK, SCHOOL.  TimeUse must also include an ALL person types.
+  - Avoid special characters such as space, slash, etc. in table data (column names and data entries).
+  - TimeUse: The PERIOD entries for TimeUse and 3DAnimatedMap are 1 to 48 and represent 30 minute periods 
+from 3am to 3am the next day.  The TimeUse purposes must be ALLCAPS and must include at least HOME, WORK, 
+SCHOOL.  TimeUse must also include an ALL person types.
   
 ## Data/Region Folder
 Each Data/Region folder needs the following:
@@ -117,7 +119,7 @@ Each Data/Region folder needs the following:
         - DesireLinesOn: Flag that will turn the desire lines layer on the map by default, this will turn off the zone layer as well
         - ExcludeSameOD: Flag to exclude data points that have the same origin and destination
         - SideBySide: Flag to transform the chord tab into one that has multiple chord charts side by side, this will also remove the map from the page
-        - ChartPerRow: Number of side by side chord charts to show on page.  Setup cannot handle more than 1 row of 2 or 3 charts
+        - ChartPerRow: Number of side by side chord charts to show on page.  Setup cannot handle more than 1 row of 4 or 5 charts
         - ZoneFilterFile: takes a csv file with the first column named ID for zone ID and that contains show/hide filters for each zone to be displayed, the labels of the zones MUST match the data FROM/TO labels
         - ZoneFile: Name of the GeoJSON file with the zone data to display on map requires each feature to have a "NAME" to link to data set, these zones will appear on the map color coded to the chord chart data points
         - LabelSize: the font size in pixels "10" is the default if not specified. 
