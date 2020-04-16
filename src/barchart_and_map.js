@@ -3,6 +3,16 @@
 var BarChartMap = {
   barchart_and_map: function barchart_and_map(id, indx) {
     "use strict";
+
+    /**
+     * Hack workaround for a bug where going to a different tab, resizing the 
+     * window, and coming back to this one breaks the Leaflet map until the 
+     * window is resized again on this tab. Long-term solution is to introduce
+     * a 3rd party client=side routing library and retire the home-grown
+     * implementation.
+     */
+    window.dispatchEvent(new Event("resize"));
+
     var naColor = "White";
     var highlightColor = "Yellow";
     var focusColor = "Yellow";
@@ -109,6 +119,7 @@ var BarChartMap = {
     var url = dataLocation + scenario; // + "/BarChartAndMapData.csv"
     var fileName = "BarChartAndMapData.csv";
     var chartSelector = "#" + id + "-chart";
+    var thisTab = $("#" + id + "_id");
     var stackChartsCheckbox = $("#" + id + "-stacked");
     var bubbleSizeDropdown = $("#" + id + "-bubble-size");
     var svgChart;
@@ -523,8 +534,6 @@ var BarChartMap = {
           //end modes foreach
         });
 
-
-        
         if (BAR_GROUP_SORT_METHOD === BAR_GROUP_SORT_METHOD_OPTIONS.firstBar) {
           chartData.sort(compareFirstBar);
         }
@@ -672,13 +681,9 @@ var BarChartMap = {
       //end call to poll
       callback();
     } //end updateChartNVD3
+
     function updateChartMouseoverRect() {
-      var shownTabs = $('li[role="presentation"]').children(":visible");
-      if (
-        shownTabs.length == 0 ||
-        ($('li[role="presentation"]').children(":visible").length > 1 &&
-          $("#thenavbar li.active").text() === "BarChart and Map")
-      ) {
+      if (thisTab.is(":visible")) {
         var innerContainer = svgChart.select(
           ".nvd3.nv-wrap.nv-multibarHorizontal"
         );
@@ -777,6 +782,9 @@ var BarChartMap = {
           //this is actually for yAxis
 
           nv.utils.windowResize(function() {
+            if (!thisTab.is(":visible")) {
+              return;
+            }
             //reset marginTop in case legend has gotten less tall
             nvd3Chart.margin({
               top: marginTop

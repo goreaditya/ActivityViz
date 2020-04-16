@@ -21,11 +21,13 @@ var BarChartGrp = {
     var dataLocation = localStorage.getItem(region);
     var chartSelector = "#" + id + "_grouped-barchart";
     var showChartOnPage = $("#" + id + "-container").children().length == 0;
+    var thisTab = $("#" + id + "_id");
     var fileName = "BarChartData.csv";
     var scenario = abmviz_utilities.GetURLParameter("scenario");
     var url = dataLocation + scenario;
     //CONFIG VARIABLES
     var numberOfCols;
+    var HIDE_CONTROLS = false;
     var ROTATELABEL = 0;
     var BARSPACING = 0.2;
     var showAsStacked = false;
@@ -129,6 +131,10 @@ var BarChartGrp = {
             }
             if (opt == "BarSpacing") {
               BARSPACING = value;
+            }
+            if (opt == "HideControls") {
+              HIDE_CONTROLS = value;
+              $('.grouped-bar-chart-controls').hide();
             }
           });
         }).complete(function() {
@@ -479,10 +485,6 @@ var BarChartGrp = {
       }
     } //end createGrouped
     createGrouped();
-    window.addEventListener("resize", function() {
-      console.log("Got resize event. Calling grouped");
-      createGrouped();
-    });
     return {};
   }
 }; //end encapsulating IIFEE
