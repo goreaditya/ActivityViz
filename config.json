@@ -1,10 +1,7 @@
 {
   "regions":{
     "tampa":{
-       "datalocation":  "https://raw.githubusercontent.com/goreaditya/ActivityViz_data/master/data/tampa/"
-    },
-    "nashville":{
-       "datalocation":  "https://raw.githubusercontent.com/goreaditya/ActivityViz_data/nashville/data/nashville/"
+       "datalocation":  "https://raw.githubusercontent.com/goreaditya/ActivityViz_data/tampa/data/tampa/"
     }
   }
 }
