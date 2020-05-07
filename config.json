@@ -1,7 +1,7 @@
 {
   "regions":{
-    "tampa":{
-       "datalocation":  "https://raw.githubusercontent.com/goreaditya/ActivityViz_data/tampa/data/tampa/"
+    "atlanta":{
+       "datalocation":  "https://raw.githubusercontent.com/goreaditya/ActivityViz_data/atlanta/data/atlanta/"
     }
   }
 }
